@@ -15,7 +15,7 @@ Once the network has trained, you can generate a sample by using the following c
 ```
 python generate.py --samples=44100 --wav_out_path=./samples/generated/name_of_file.wav  ./logdir/train/some_date_string/model.ckpt-n
 ```
-and this will use the network architecture stored in './logdir/train/some_date_string/model.ckpt-n' to generate a wav file of length 44100 samples, and with the path being './samples/generated/name_of_file.wav'.
+and this will use the network architecture stored in './logdir/train/some_date_string/model.ckpt-n' to generate a wav file of length 44100 samples, and with the path being './samples/generated/name_of_file.wav'. More detailed description of generate.py can be found below, as well as looking through the source code and the get_arguments() function that describes all of the parameters we can change on generate init. 
 
 More to come!
 
