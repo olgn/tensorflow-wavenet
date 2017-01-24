@@ -1,3 +1,24 @@
+# WaveNet for Drum Sample Creation
+
+This is an edit of the ibab/tensorflow-wavenet implementation in TensorFlow for the creation of novel drum sounds.
+
+To get it going, first ensure that TensorFlow is installed on your computer, as well as Theano and Librosa. See below for instructions on how to install the requirements besides TensorFlow. 
+
+Once you have the code and packages installed, put some samples in the samples/training/ folder. A good idea is to put some kicks in the samples/training/kicks folder, for example. Then the program is run in the following way (thedetailed explanation is below, this is just the easy version to get something going quick):
+
+```
+python train.py --data_dir='./samples/kicks' --sample_size=88200 --num_steps=100000
+```
+note that you should change the data_dir variable to whatever folder you put the samples in, the sample_size defaults to 100000, but generally one second of data is enough for short kicks (the sample_size variable controls essentially the 'width' of the neural network's input), and num_steps to however many iterations you wish for the network to run at. Keep in mind that the system stores checkpoints along the way, so you can cancel the training process at any time and the network architectures will be stored in './logdir/train/some_date_string/' and will be labeled like 'model.ckpt-n' where n is the number of iterations for which the checkpoint was stored.
+
+Once the network has trained, you can generate a sample by using the following code
+```
+python generate.py --samples=44100 --wav_out_path=./samples/generated/name_of_file.wav  ./logdir/train/some_date_string/model.ckpt-n
+```
+and this will use the network architecture stored in './logdir/train/some_date_string/model.ckpt-n' to generate a wav file of length 44100 samples, and with the path being './samples/generated/name_of_file.wav'.
+
+More to come!
+
 # A TensorFlow implementation of DeepMind's WaveNet paper
 
 [![Build Status](https://travis-ci.org/ibab/tensorflow-wavenet.svg?branch=master)](https://travis-ci.org/ibab/tensorflow-wavenet)
@@ -41,7 +62,7 @@ The loss function is the cross-entropy between the output for each timestep and 
 In this repository, the network implementation can be found in <a href="./wavenet/model.py">model.py</a>.
 </p>
 </td>
-<td width="300">
+<td width="300"
 <img src="images/network.png" width="300"></img>
 </td>
 </tr>
