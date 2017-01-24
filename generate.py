@@ -12,7 +12,7 @@ import tensorflow as tf
 
 from wavenet import WaveNetModel, mu_law_decode, mu_law_encode, audio_reader
 
-SAMPLES = 16000
+SAMPLES = 44100
 TEMPERATURE = 1.0
 LOGDIR = './logdir'
 WINDOW = 8000
@@ -68,7 +68,7 @@ def get_arguments():
     parser.add_argument(
         '--wav_out_path',
         type=str,
-        default=None,
+        default='./samples/generated/01.wav',
         help='Path to output wav file')
     parser.add_argument(
         '--save_every',

@@ -20,7 +20,7 @@ from tensorflow.python.client import timeline
 from wavenet import WaveNetModel, AudioReader, optimizer_factory
 
 BATCH_SIZE = 1
-DATA_DIRECTORY = './VCTK-Corpus'
+DATA_DIRECTORY = './samples/training'
 LOGDIR_ROOT = './logdir'
 CHECKPOINT_EVERY = 50
 NUM_STEPS = int(1e5)
@@ -182,7 +182,7 @@ def validate_directories(args):
 
 def main():
     args = get_arguments()
-
+    print(args)
     try:
         directories = validate_directories(args)
     except ValueError as e:
